@@ -1,7 +1,11 @@
 import React from 'react'
+import Styles from './SideBar.module.scss'
+import className from 'classnames/bind'
+
+const cx = className.bind(Styles)
 
 const SideBar = () => {
-	return <h1>SideBar</h1>
+	return <div className={cx('wrapper')}>SideBar</div>
 }
 
 export default SideBar
