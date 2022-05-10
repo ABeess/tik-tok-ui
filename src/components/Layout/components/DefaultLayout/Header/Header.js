@@ -11,6 +11,7 @@ import 'tippy.js/dist/tippy.css' // optional
 // Components
 import { PopperWrapper } from '@/components/Layout/components/Popper'
 import AccoutsItem from '@/components/AccoutsItem/AccoutsItem'
+import Button from '@/components/Button/Button'
 
 const cx = classNames.bind(Styles)
 
@@ -59,7 +60,10 @@ const Header = () => {
 						</button>
 					</div>
 				</Tippy>
-				<div className={cx('actions')}></div>
+				<div className={cx('actions')}>
+					<Button text>Upload</Button>
+					<Button primary>Log in</Button>
+				</div>
 			</div>
 		</header>
 	)
