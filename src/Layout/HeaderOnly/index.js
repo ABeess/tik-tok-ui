@@ -1,5 +1,5 @@
-import React from 'react'
-import Header from '@/components/Layout/components/DefaultLayout/Header/Header'
+import React from 'react';
+import Header from '@/Layout/DefaultLayout/Header';
 
 export const HeaderOnly = ({ children }) => {
 	return (
@@ -9,5 +9,5 @@ export const HeaderOnly = ({ children }) => {
 				<div className="content">{children}</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
