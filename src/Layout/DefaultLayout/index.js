@@ -7,7 +7,12 @@ export const DefaultLayout = ({ children }) => {
 	return (
 		<>
 			<Header />
-			<Container maxWidth="lg">
+			<Container
+				maxWidth="lg"
+				sx={{
+					height: '100%',
+				}}
+			>
 				<Grid container spacing={2}>
 					<Grid item xs={3}>
 						<SideBar />

@@ -30,6 +30,7 @@ const Menu = ({ children, width, items }) => {
 		<Tippy
 			interactive={true}
 			delay={[0, 800]}
+			hideOnClick={false}
 			placement="bottom-end"
 			render={(attrs) => (
 				<Box sx={{ width: width }}>

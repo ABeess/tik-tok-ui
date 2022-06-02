@@ -1,16 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import classNames from 'classnames/bind';
-import Styles from './Header.module.scss';
-import images from '@/assets/images';
+import React from 'react';
 // React Icon
-import { FiSearch } from 'react-icons/fi';
-import { AiFillCloseCircle, AiOutlineLoading3Quarters } from 'react-icons/ai';
-// Tippy
-import Tippy from '@tippyjs/react/headless'; // different import path!
-import 'tippy.js/dist/tippy.css'; // optional
-// Components
-import { PopperWrapper } from '@/components/Popper';
-import AccoutsItem from '@/components/AccoutsItem/AccoutsItem';
 
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -22,13 +11,22 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Container, Button, Avatar, Tooltip, Typography } from '@mui/material';
+import {
+	Container,
+	Button,
+	Avatar,
+	Tooltip,
+	Typography,
+	Badge,
+} from '@mui/material';
 import Zoom from '@mui/material/Zoom';
 import { Box, styled } from '@mui/system';
 import MessageIcon from '@mui/icons-material/Message';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-
-const cx = classNames.bind(Styles);
+import { LogoIcon } from '@/components/icons';
+import SearchHeader from '@/Layout/DefaultLayout/SearchHeader';
+import { Link } from 'react-router-dom';
+import path from '@/config/path';
 
 const MENU_ITEM = [
 	{
@@ -75,17 +73,11 @@ const TitleTooltipStyled = styled(Typography)(({ theme }) => ({
 	fontSize: 14,
 	fontWeight: 'bold',
 }));
+const LogoLinkStyled = styled(Link)(({ theme }) => ({
+	display: 'flex',
+}));
 const Header = () => {
-	const [searchResults, setSearchResults] = useState([
-		1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-	]);
 	const currentUser = true;
-
-	useEffect(() => {
-		setTimeout(() => {
-			setSearchResults([]);
-		}, 0);
-	}, []);
 
 	const userMenu = [
 		{
@@ -112,42 +104,18 @@ const Header = () => {
 		<HeaderWrapper>
 			<Container
 				maxWidth="lg"
-				sx={{ display: 'flex', justifyContent: 'space-between' }}
+				sx={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					height: '100%',
+					alignItems: 'center',
+				}}
 			>
-				<div className={cx('logo')}>
-					<img src={images.logo} alt="TikTok" />
-				</div>
-				<Tippy
-					interactive={true}
-					visible={searchResults.length > 0}
-					render={(attrs) => (
-						<div className={cx('search-result')} tabIndex="-1">
-							<PopperWrapper>
-								<h4 className={cx('search-title')}>Account</h4>
-								<AccoutsItem />
-								<AccoutsItem />
-								<AccoutsItem />
-								<AccoutsItem />
-								<AccoutsItem />
-							</PopperWrapper>
-						</div>
-					)}
-				>
-					<div className={cx('search')}>
-						<input
-							className={cx('search-input')}
-							placeholder="Tìm kiếm tài khoản và video"
-							spellcheck={false}
-						/>
-						<button className={cx('clear-btn')}>
-							<AiFillCloseCircle />
-						</button>
-						<AiOutlineLoading3Quarters className={cx('spinner')} />
-						<button className={cx('search-btn')}>
-							<FiSearch />
-						</button>
-					</div>
-				</Tippy>
+				<LogoLinkStyled to={path.root}>
+					<LogoIcon></LogoIcon>
+				</LogoLinkStyled>
+
+				<SearchHeader></SearchHeader>
 				{/* action */}
 				<ActionsStyled>
 					{currentUser ? (
@@ -181,7 +149,9 @@ const Header = () => {
 									aria-label="messages"
 									sx={{ marginLeft: 2 }}
 								>
-									<MessageIcon sx={{ fontSize: 22 }} />
+									<Badge badgeContent={8} color="primary">
+										<MessageIcon sx={{ fontSize: 22 }} />
+									</Badge>
 								</IconButton>
 							</Tooltip>
 						</>
@@ -211,7 +181,7 @@ const Header = () => {
 						{currentUser ? (
 							<Avatar
 								alt="Remy Sharp"
-								src="/static/images/avatar/1.jpg"
+								src="https://i.pinimg.com/originals/16/a0/b0/16a0b0e950d5b484e6b6303122f1823f.jpg"
 								sx={{
 									width: 32,
 									height: 32,

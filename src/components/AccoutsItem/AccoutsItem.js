@@ -1,29 +1,48 @@
 import React from 'react';
-import className from 'classnames/bind';
-import Styles from './AccoutsItem.module.scss';
 
 //  react icons
-import { BsFillCheckCircleFill } from 'react-icons/bs';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-const cx = className.bind(Styles);
+import { Link } from 'react-router-dom';
+import { Avatar, Box, Stack, Typography } from '@mui/material';
+import { styled } from '@mui/system';
 
-const AccoutsItem = () => {
+const AccoutsItem = ({ data }) => {
 	return (
-		<div className={cx('wrapper')}>
-			<img
-				className={cx('avatar')}
-				src="https://i.pinimg.com/originals/16/a0/b0/16a0b0e950d5b484e6b6303122f1823f.jpg"
-				alt="hoaa"
-			/>
-			<div className={cx('info')}>
-				<p className={cx('name')}>
-					<span>Dao le phuong hoa</span>
-					<BsFillCheckCircleFill className={cx('check')} />
-				</p>
-				<span className={cx('username')}>Đào Lê Phương Hoa</span>
-			</div>
-		</div>
+		<LinkStyled to={`@${data.nickname}`}>
+			<Avatar src={data.avatar} alt={data.nickname} />
+			<Stack
+				sx={{
+					paddingLeft: 2,
+				}}
+			>
+				<Box sx={{ display: 'flex', alignItems: 'center', fontSize: 16 }}>
+					<Typography
+						variant="h4"
+						fontSize="inherit"
+						sx={{ color: '#212121', marginRight: 0.5 }}
+					>
+						{data.nickname}
+					</Typography>
+					{data.tick && (
+						<CheckCircleIcon fontSize="inherit" color="info" />
+					)}
+				</Box>
+				<Typography variant="body1" sx={{ fontSize: 12, color: '#9e9e9e' }}>
+					{data.full_name}
+				</Typography>
+			</Stack>
+		</LinkStyled>
 	);
 };
+const LinkStyled = styled(Link)(({ theme }) => ({
+	display: 'inline-flex',
+	width: '100%',
+	alignItems: 'center',
+	padding: theme.spacing(1, 2),
+	'&:hover': {
+		backgroundColor: '#fafafa',
+	},
+}));
 
 export default AccoutsItem;

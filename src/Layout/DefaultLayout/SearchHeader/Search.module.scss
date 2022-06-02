@@ -13,6 +13,7 @@ $dark-color: #343a40;
 $width-content: 1150px;
 $height-header: 60px;
 $width-sidebar: 340px;
+
 .search-result {
 	width: 361px;
 }
@@ -34,13 +35,13 @@ $width-sidebar: 340px;
 .search-title {
 	padding: 5px 12px;
 	color: $gray-color;
-	font-size: 1.6rem;
+	font-size: 16px;
 	font-weight: 500;
 }
 
 .search-input {
 	color: $dark-color;
-	font-size: 1.4rem;
+	font-size: 14px;
 	background-color: transparent;
 	height: 100%;
 	flex: 1;
@@ -50,18 +51,13 @@ $width-sidebar: 340px;
 	}
 }
 
-.clear-btn,
-.spinner {
+.clear-btn {
 	color: #bababd;
 	position: absolute;
 	right: 68px;
 	// display: none;
-	font-size: 1.6rem;
+	font-size: 14px;
 	background-color: transparent;
-}
-
-.spinner {
-	// display: block;
 }
 
 .search-btn {
@@ -70,7 +66,7 @@ $width-sidebar: 340px;
 	border-top-right-radius: $search-border;
 	border-bottom-right-radius: $search-border;
 	color: $gray-color;
-	font-size: 2rem;
+	font-size: 22px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
