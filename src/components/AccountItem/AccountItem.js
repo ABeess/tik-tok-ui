@@ -1,13 +1,16 @@
 import React from 'react';
 
+// React router
+import { Link } from 'react-router-dom';
+
 //  react icons
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-import { Link } from 'react-router-dom';
+// Material ui
 import { Avatar, Box, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 
-const AccoutsItem = ({ data }) => {
+const AccountItem = ({ data }) => {
 	return (
 		<LinkStyled to={`@${data.nickname}`}>
 			<Avatar src={data.avatar} alt={data.nickname} />
@@ -45,4 +48,4 @@ const LinkStyled = styled(Link)(({ theme }) => ({
 	},
 }));
 
-export default AccoutsItem;
+export default AccountItem;

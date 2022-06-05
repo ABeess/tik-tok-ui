@@ -1,18 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { PopperWrapper } from '../../../components/Popper';
+// React Icon
 import { FiSearch } from 'react-icons/fi';
 import { AiFillCloseCircle } from 'react-icons/ai';
 // Tippy
 import Tippy from '@tippyjs/react/headless'; // different import path!
+// ClassName
 import classNames from 'classnames/bind';
 import Styles from './Search.module.scss'; // Components
-import AccoutsItem from '@/components/AccoutsItem/AccoutsItem';
+// Mui
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+// Custom Hooks
 import { useDebounce } from '@/hooks';
+// Request
+import { PopperWrapper } from '../../../components/Popper';
 import { search } from '@/service/search';
-const cx = classNames.bind(Styles);
+// components
+import AccountItem from '@/components/AccountItem/AccountItem';
 
+const cx = classNames.bind(Styles);
 const SearchHeader = () => {
 	const [searchResults, setSearchResults] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
@@ -58,43 +64,46 @@ const SearchHeader = () => {
 		setShowResults(true);
 	};
 	return (
-		<Tippy
-			interactive={true}
-			visible={showResults && searchResults.length > 0}
-			render={(attrs) => (
-				<Box sx={{ width: 362 }}>
-					<PopperWrapper>
-						<SearchTitleStyle variant="h6">Account</SearchTitleStyle>
-						{searchResults.map((item) => (
-							<AccoutsItem key={item.id} data={item} />
-						))}
-					</PopperWrapper>
-				</Box>
-			)}
-			onClickOutside={handleHideResults}
-		>
-			<div className={cx('search')}>
-				<input
-					value={searchValue}
-					ref={inputRef}
-					className={cx('search-input')}
-					placeholder="Tìm kiếm tài khoản và video"
-					onChange={handleOnChange}
-					onFocus={handleShowResults}
-				/>
-				{!loading && !!searchValue && (
-					<ClearIconStyle onClick={handleClear} />
+		// Using a wrapper <div>  tag around the reference element solves this by creating a new parentNode context.
+		<Box components="div">
+			<Tippy
+				interactive={true}
+				visible={showResults && searchResults.length > 0}
+				render={(attrs) => (
+					<Box sx={{ width: 362 }}>
+						<PopperWrapper>
+							<SearchTitleStyle variant="h6">Account</SearchTitleStyle>
+							{searchResults.map((item) => (
+								<AccountItem key={item.id} data={item} />
+							))}
+						</PopperWrapper>
+					</Box>
 				)}
+				onClickOutside={handleHideResults}
+			>
+				<div className={cx('search')}>
+					<input
+						value={searchValue}
+						ref={inputRef}
+						className={cx('search-input')}
+						placeholder="Tìm kiếm tài khoản và video"
+						onChange={handleOnChange}
+						onFocus={handleShowResults}
+					/>
+					{!loading && !!searchValue && (
+						<ClearIconStyle onClick={handleClear} />
+					)}
 
-				{loading && <LoadingIconStyle size={24} />}
-				<button
-					className={cx('search-btn')}
-					onMouseDown={(e) => e.preventDefault()}
-				>
-					<FiSearch />
-				</button>
-			</div>
-		</Tippy>
+					{loading && <LoadingIconStyle size={24} />}
+					<button
+						className={cx('search-btn')}
+						onMouseDown={(e) => e.preventDefault()}
+					>
+						<FiSearch />
+					</button>
+				</div>
+			</Tippy>
+		</Box>
 	);
 };
 

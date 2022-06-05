@@ -1,9 +1,16 @@
 import React from 'react';
-// React Icon
 
+// React router
+import { Link } from 'react-router-dom';
+
+// Components
+import Menu from '../../../components/Popper/Menu';
+import { LogoIcon } from '@/components/icons';
+import SearchHeader from '@/layouts/DefaultLayout/SearchHeader';
+
+// Material icon
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Menu from '../../../components/Popper/Menu';
 import PublicIcon from '@mui/icons-material/Public';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
@@ -11,6 +18,10 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
+import MessageIcon from '@mui/icons-material/Message';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
+// Material ui
 import {
 	Container,
 	Button,
@@ -19,15 +30,11 @@ import {
 	Typography,
 	Badge,
 } from '@mui/material';
-import Zoom from '@mui/material/Zoom';
 import { Box, styled } from '@mui/system';
-import MessageIcon from '@mui/icons-material/Message';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { LogoIcon } from '@/components/icons';
-import SearchHeader from '@/Layout/DefaultLayout/SearchHeader';
-import { Link } from 'react-router-dom';
-import path from '@/config/path';
+import Zoom from '@mui/material/Zoom';
 
+// config
+import config from '@/config';
 const MENU_ITEM = [
 	{
 		title: 'English',
@@ -56,26 +63,7 @@ const MENU_ITEM = [
 		icons: <KeyboardIcon />,
 	},
 ];
-const ActionsStyled = styled(Box)(({ theme }) => ({
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'space-around',
-	fontSize: 18,
-}));
-const HeaderWrapper = styled('div')(({ theme }) => ({
-	height: 60,
-	width: '100%',
-	boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.12)',
-	display: 'flex',
-	alignItems: 'center',
-}));
-const TitleTooltipStyled = styled(Typography)(({ theme }) => ({
-	fontSize: 14,
-	fontWeight: 'bold',
-}));
-const LogoLinkStyled = styled(Link)(({ theme }) => ({
-	display: 'flex',
-}));
+
 const Header = () => {
 	const currentUser = true;
 
@@ -111,7 +99,7 @@ const Header = () => {
 					alignItems: 'center',
 				}}
 			>
-				<LogoLinkStyled to={path.root}>
+				<LogoLinkStyled to={config.path.root}>
 					<LogoIcon></LogoIcon>
 				</LogoLinkStyled>
 
@@ -202,5 +190,29 @@ const Header = () => {
 		</HeaderWrapper>
 	);
 };
-
+const ActionsStyled = styled(Box)(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'space-around',
+	fontSize: 18,
+}));
+const HeaderWrapper = styled('div')(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'center',
+	position: 'fixed',
+	height: 60,
+	width: '100%',
+	top: 0,
+	left: 0,
+	right: 0,
+	boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.12)',
+	backgroundColor: '#fff',
+}));
+const TitleTooltipStyled = styled(Typography)(({ theme }) => ({
+	fontSize: 14,
+	fontWeight: 'bold',
+}));
+const LogoLinkStyled = styled(Link)(({ theme }) => ({
+	display: 'flex',
+}));
 export default Header;

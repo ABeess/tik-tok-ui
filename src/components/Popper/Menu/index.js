@@ -1,9 +1,13 @@
 import React from 'react';
+// Components
 import PopperWrapper from '../PopperWrapper';
-import { Box } from '@mui/material';
-import Tippy from '@tippyjs/react/headless'; // different import path!
 import MenuItem from './MenuItem';
 import Header from './Header';
+// Material UI
+import { Box } from '@mui/material';
+import { styled } from '@mui/system';
+// Tippy
+import Tippy from '@tippyjs/react/headless';
 
 const Menu = ({ children, width, items }) => {
 	const [history, setHistory] = React.useState([{ data: items }]);
@@ -39,7 +43,7 @@ const Menu = ({ children, width, items }) => {
 							<Header title="language" onBack={handleOnBack}></Header>
 						)}
 
-						{renderItem()}
+						<ScrollableStyled>{renderItem()}</ScrollableStyled>
 					</PopperWrapper>
 				</Box>
 			)}
@@ -49,5 +53,8 @@ const Menu = ({ children, width, items }) => {
 		</Tippy>
 	);
 };
+const ScrollableStyled = styled(Box)(({ theme }) => ({
+	overflowY: 'auto',
+}));
 
 export default Menu;
